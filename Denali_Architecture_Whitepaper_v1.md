@@ -1,0 +1,1 @@
+cat /home/workdir/artifacts/Denali_Architecture_Whitepaper_v1.md | cat

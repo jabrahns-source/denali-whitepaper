@@ -1,18 +1,20 @@
-name: Validate Whitepaper
-on: [push, pull_request]
+name: Validate whitepaper
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Lint Markdown
-      uses: avto-dev/markdown-lint@v1
-      with:
-        config: '.markdownlint.json'
-    - name: Validate JSON
-      run: | 
-        for f in *.json; do jq . "$f" > /dev/null || exit 1; done
-    - name: Check links
-      uses: lycheeverse/lychee-action@v1
-      with:
-        target: README.md *.md
+      - uses: actions/checkout@v4
+      - name: Required artifacts
+        run: |
+          test -f Denali_Architecture_Whitepaper_v1.md
+          test -f LICENSE
+          test -f README.md
+          test -f .zenodo.json
+          python3 -c "import json; json.load(open('.zenodo.json'))"

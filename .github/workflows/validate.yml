@@ -18,3 +18,5 @@ jobs:
           test -f README.md
           test -f .zenodo.json
           python3 -c "import json; json.load(open('.zenodo.json'))"
+      - name: Structural tests
+        run: python3 -m unittest tests/test_whitepaper.py

@@ -15,6 +15,16 @@ class WhitepaperStructureTest(unittest.TestCase):
     def test_zenodo_json(self):
         data = json.loads((ROOT / ".zenodo.json").read_text(encoding="utf-8"))
         self.assertIsInstance(data, dict)
+        description = data.get("description", "")
+        self.assertIsInstance(description, str)
+        self.assertGreater(len(description), 80)
+        self.assertNotIn("...", description)
+        self.assertNotEqual(description.strip().lower(), "api spec")
+        self.assertTrue(data.get("title"))
+        self.assertEqual(data.get("license"), "mit")
+        creators = data.get("creators") or []
+        self.assertGreaterEqual(len(creators), 1)
+        self.assertTrue(creators[0].get("name"))
 
     def test_paper_has_sections(self):
         text = PAPER.read_text(encoding="utf-8")

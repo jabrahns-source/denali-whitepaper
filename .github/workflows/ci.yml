@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Required artifacts
+        run: |
+          test -f Denali_Architecture_Whitepaper_v1.md
+          test -f LICENSE
+          test -f README.md
+          test -f .zenodo.json
+          test -f index.html
+          python3 -c 'import json; json.load(open(".zenodo.json"))'
+      - name: Structural tests
+        run: python3 -m unittest tests/test_whitepaper.py -v
+      - name: Reject committed build artifacts
+        run: |
+          if find . -path './.git' -prune -o -type d \( -name node_modules -o -name __pycache__ -o -name dist -o -name target \) -print | grep -q .; then
+            echo "committed build artifact directory"
+            exit 1
+          fi

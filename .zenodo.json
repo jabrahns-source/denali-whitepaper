@@ -1,1 +1,35 @@
-{"creators": [{"name": "Jacarri Sanders", "affiliation": "Even The Odds Foundry"}], "title": "Denali Architecture Whitepaper", "description": "...", "license": "MIT", "upload_type": "publication"}
+{
+  "creators": [
+    {
+      "name": "Jacarri Sanders",
+      "affiliation": "Even The Odds Foundry"
+    }
+  ],
+  "title": "The Denali Architecture Whitepaper v1.0",
+  "description": "Deterministic symbolic reasoning architecture for regulatory compliance infrastructure. Specifies the Denali gate, receipt sealing, and the interface to Kerna-Ledger VCI and VERA packets. Companion preprint to the executable engines in Q-Reg, kerna-ledger-vci, and vera-enterprise-engine. Not a substitute for those runtimes.",
+  "license": "mit",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "keywords": [
+    "deterministic compute",
+    "SB 253",
+    "compliance",
+    "Kerna-Ledger",
+    "Denali",
+    "VERA"
+  ],
+  "version": "1.0.0",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/jabrahns-source/kerna-ledger-vci",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/jabrahns-source/Q-Reg",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
